@@ -1,0 +1,43 @@
+{
+  "private": true,
+  "name": "template.monorepo",
+  "description": "A project template for a monorepo.",
+  "version": "1.0.0",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "run-s ~build",
+    "test": "run-s ~build ~test",
+    "~build": "wsrun -s -m build",
+    "~test": "wsrun -m test"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.7.1",
+    "commitizen": "^4.1.2",
+    "cz-conventional-changelog": "3.2.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.4",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.0.5",
+    "wsrun": "^5.2.0"
+  },
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,json,md}": [
+      "prettier --write"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "workspaces": [
+    "./packages/*",
+    "./packages.*/*"
+  ]
+}

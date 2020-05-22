@@ -1,0 +1,45 @@
+{
+  "name": "@acme/calculator.cli",
+  "description": "A simple calculator [CLI].",
+  "version": "0.0.0",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib/**/*"
+  ],
+  "license": "UNLICENSED",
+  "bin": {
+    "calc": "./lib/index.js"
+  },
+  "scripts": {
+    "build": "run-s ~clean ~type-check ~compile",
+    "prepublishOnly": "run-s ~test",
+    "test": "run-s ~test",
+    "~clean": "shx rm -rf ./lib",
+    "~compile": "webpack --mode production",
+    "~test": "jest",
+    "~type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@acme/calculator": "0.0.0",
+    "commander": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.2.3",
+    "@types/node": "^14.0.4",
+    "jest": "^26.0.1",
+    "json5": "^2.1.3",
+    "lodash": "^4.17.15",
+    "npm-run-all": "^4.1.5",
+    "shx": "^0.3.2",
+    "ts-jest": "^26.0.0",
+    "ts-loader": "^7.0.4",
+    "typescript": "^3.9.3",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  },
+  "externals": {
+    "@acme/calculator": "0.0.0",
+    "commander": "^5.1.0"
+  }
+}
